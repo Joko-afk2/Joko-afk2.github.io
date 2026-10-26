@@ -1,0 +1,270 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Packages ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage{eurosym}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,babel}
+\usepackage[colorlinks=true,linkcolor=bleu,urlcolor=bleu]{hyperref}
+
+% ---------- Couleurs ----------
+\definecolor{bleu}{RGB}{37,99,235}
+\definecolor{vert}{RGB}{22,163,74}
+\definecolor{rouge}{RGB}{220,38,38}
+\definecolor{orange}{RGB}{234,138,12}
+\definecolor{gris}{RGB}{100,116,139}
+
+% ---------- Styles TikZ ----------
+\tikzset{
+  box/.style={rectangle, rounded corners=3pt, draw=#1!70!black, fill=#1!12,
+              thick, align=center, minimum height=1cm, text width=3.6cm,
+              inner sep=5pt, font=\small},
+  box/.default=bleu,
+  fleche/.style={-{Stealth[length=2.5mm]}, thick, gris!80!black}
+}
+
+% ---------- Encadré « idée clé » ----------
+\newcommand{\cle}[1]{%
+  \begin{center}
+    \fcolorbox{bleu}{bleu!8}{\parbox{0.9\textwidth}{\vspace{2pt}#1\vspace{2pt}}}
+  \end{center}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\title{\textbf{Comment la monnaie est-elle créée ?}\\[4pt]
+\large Banques commerciales, banque centrale et rôle du crédit}
+\author{\int Joko}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent En Europe la monnaie est créée de deux manières par les banques, en accordant des crédits, et par la banque centrale, qui fournit la monnaie (billets et réserves). Ce document, fait pas mes soins explique pourquoi un crédit crée puis détruit de la monnaie, pourquoi la masse monétaire peut tout de même augmenter, pourquoi imprimer des billets n'est pas synonyme d'inflation, et à quoi sert la création monétaire.
+\end{abstract}
+
+% =====================================================================
+\section{Qui crée la monnaie ?}
+
+Contrairement à une idée répandue, une banque ne prête pas l'argent déposé des clients, quand elle accorde un crédit, elle crée de la monnaie : elle note le montant sur le compte de l'emprunteur et enregistre sa dette. Il s'agit de monnaie \emph{scripturale}.
+
+La banque centrale, la BCE ou la FED crée, la \emph{monnaie centrale} : les billets et les réserves que les banques ont sur leur compte. Elle le fait en prêtant aux banques ou en achetant des titres. Enfin, les états de la zone euro ne "frappent" (L'acte par lequel un État fabrique et émet des pièces de monnaie) que les pièces, une part très petite de toute la monnaie.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \node[box=gris, text width=5cm] (top) at (0,0) {\textbf{Monnaie en circulation}};
+  \node[box=bleu, text width=4.2cm] (bc) at (-5,-2.8)
+    {\textbf{Banque centrale}\\ billets et réserves\\ \scriptsize(monnaie centrale)};
+  \node[box=vert, text width=4.2cm] (bq) at (0,-2.8)
+    {\textbf{Banques commerciales}\\ comptes en banque\\ \scriptsize(monnaie scripturale)};
+  \node[box=orange, text width=4.2cm] (et) at (5,-2.8)
+    {\textbf{États}\\ pièces\\ \scriptsize(part marginale)};
+  \draw[fleche] (top.south) -- (bc.north);
+  \draw[fleche] (top.south) -- (bq.north);
+  \draw[fleche] (top.south) -- (et.north);
+  \node[font=\footnotesize\itshape, gris!80!black, below=0.25cm of bq, text width=4.2cm, align=center]
+    {crée la majeure partie de la monnaie, via le crédit};
+\end{tikzpicture}
+\caption{Les trois sources de monnaie dans la zone euro.}
+\label{fig:sources}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}p{4.6cm}p{3.6cm}p{6cm}@{}}
+\toprule
+\textbf{Type de monnaie} & \textbf{Qui la crée} & \textbf{Comment} \\
+\midrule
+Monnaie scripturale & Banques   & En accordant des crédits. \\
+Billets et réserves bancaires & Banque centrale & Prêts aux banques, achats de titres. \\
+Pièces & États & Frappe, dans la limite d'un volume autorisé par la BCE. \\
+\bottomrule
+\end{tabular}
+\caption{Récapitulatif des acteurs de la création monétaire.}
+\end{table}
+
+Cette création est limitée : elle dépend de la demande de crédit, des règles prudentielles (fonds propres, liquidité) et du taux directeur de la banque centrale.
+
+% =====================================================================
+\section{Le cycle d'un crédit}
+
+Prenons un prêt immobilier de 200\,000~\euro, la monnaie est créée à la création du crédit, elle circule pendant toute la durée du prêt, puis est détruite au fur et à mesure du remboursement. Les intérêts, ne sont pas détruits : ils rémunèrent la banque (salaires, actionnaires, etc.).
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+  \node[box=bleu] (a) at (0,0)
+    {\textbf{1. Octroi}\\ La banque inscrit 200\,000~\euro{} sur le compte};
+  \node[box=vert] (b) at (5.3,0)
+    {\textbf{2. Utilisation}\\ L'emprunteur paie le vendeur : la monnaie circule dans l'économie};
+  \node[box=rouge] (c) at (10.6,0)
+    {\textbf{3. Remboursement}\\ La monnaie est effacée en même temps que la dette};
+  \draw[fleche] (a) -- (b);
+  \draw[fleche] (b) -- (c);
+  \node[box=orange, text width=10cm] (d) at (5.3,-2.9)
+    {\textbf{Tant que la dette existe et n'est pas remboursée}};
+  \draw[dashed, gris] (a.south) -- ++(0,-0.5) -| (d.west) ;
+  \draw[dashed, gris] (c.south) -- ++(0,-0.5) -| (d.east) ;
+\end{tikzpicture}
+\caption{Vie d'un crédit : la monnaie existe pendant toute la durée de la dette.}
+\label{fig:credit}
+\end{figure}
+
+
+
+% =====================================================================
+\section{Pourquoi la masse monétaire peut augmenter alors qu'il s'agit d'un cycle}
+
+La masse monétaire est le total de tous les crédits en cours. Chaque jour, des milliers de ménagers ont des crédits accordés et remboursés. Si les nouveaux crédits dépassent les remboursements, la masse monétaire augmente ; dans le cas inverse, elle diminue.
+
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[y=0.03cm]
+  % axe
+  \draw[->, thick, gris] (-0.4,0) -- (9.6,0);
+  % barres
+  \fill[bleu!55]  (0,0)     rectangle (1.7,100);
+  \fill[vert!55]  (2.5,100) rectangle (4.2,130);
+  \fill[rouge!55] (5.0,110) rectangle (6.7,130);
+  \fill[bleu!55]  (7.5,0)   rectangle (9.2,110);
+  % lignes de liaison
+  \draw[dashed, gris] (1.7,100) -- (2.5,100);
+  \draw[dashed, gris] (4.2,130) -- (5.0,130);
+  \draw[dashed, gris] (6.7,110) -- (7.5,110);
+  % valeurs
+  \node[above, font=\small\bfseries] at (0.85,100) {100};
+  \node[above, font=\small\bfseries] at (3.35,130) {+30};
+  \node[below, font=\small\bfseries] at (5.85,110) {$-20$};
+  \node[above, font=\small\bfseries] at (8.35,110) {110};
+  % étiquettes
+  \node[below, text width=2cm, align=center, font=\scriptsize] at (0.85,-4) {Crédits en cours (début)};
+  \node[below, text width=2cm, align=center, font=\scriptsize] at (3.35,-4) {Nouveaux crédits};
+  \node[below, text width=2cm, align=center, font=\scriptsize] at (5.85,-4) {Crédits remboursés (détruits)};
+  \node[below, text width=2cm, align=center, font=\scriptsize] at (8.35,-4) {Crédits en cours (fin)};
+\end{tikzpicture}
+\caption{Exemple chiffré (en millions d'euros) :  le stock a augmenté de 10.}
+\label{fig:stock}
+\end{figure}
+
+C'est comme un immeuble où chaque personne entre puis ressort : pour chacune, le cycle est complet : elle entre puis sort. Pourtant, si 50 personnes entrent dans la journée et que 30 seulement sortent, il y a 20 personnes de plus à l'intérieur donc +20.
+
+Dans une économie qui grandit, les entreprises et les ménages empruntent pour investir, construire ou acheter, la masse monétaire de la zone euro a ainsi plus que doublé depuis 2002. Quant à l'argent avec lequel vous remboursez, souvent le salaire, existe parce qu'un autre crédit l'a créé auparavant. La monnaie tient donc tant que des dettes sont en cours : si plus personne n'empruntait, la monnaie diminuerait.
+
+
+
+
+
+% =====================================================================
+\section{Pourquoi imprimer des billets ne provoque pas d'inflation}
+
+Plus de billets en circulation ne signifie pas plus de monnaie :  Quand vous retirez 100~\euro{} au distributeur, votre compte baisse de 100~\euro{} et vous avez 100~\euro{} en poche. 
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+  \node[box=vert, text width=3.6cm] (bq) at (0,0) {\textbf{Banque commerciale}};
+  \node[box=bleu, text width=3.6cm] (bc) at (8,0) {\textbf{Banque centrale}};
+  \draw[fleche] ($(bq.east)+(0,0.3)$) -- ($(bc.west)+(0,0.3)$)
+    node[midway, above, font=\small] {100~\euro{} de réserves};
+  \draw[fleche] ($(bc.west)+(0,-0.3)$) -- ($(bq.east)+(0,-0.3)$)
+    node[midway, below, font=\small] {100~\euro{} de billets};
+  \node[box=orange, text width=8cm] at (4,-2.2)
+    {\textbf{Masse monétaire totale identique} : une forme de monnaie est échangée contre une autre};
+\end{tikzpicture}
+\caption{Remettre des billets aux banques revient à convertir des réserves en cash.}
+\label{fig:billets}
+\end{figure}
+
+ L'inflation, elle, dépend de la quantité totale de monnaie qui cherche à être dépensée par rapport à ce que l'économie peut produire. La BCE vise environ 2\,\% par an.
+% =====================================================================
+\section{À quoi sert de créer de la monnaie ?}
+
+Créer de la monnaie par le crédit permet de transformer un revenu futur en capacité d'agir aujourd'hui. Avec l'exemple d'un entrepreneur qui veut ouvrir une boulangerie et qui a besoin de 100\,000~\euro. Sans crédit, il devrait avoir épargné cette somme avant; avec un crédit, le projet peut démarrer.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \node[box=bleu, text width=4.3cm] (a) at (0,0)
+    {\textbf{1. Création}\\ La banque accorde 100\,000~\euro{} de crédit};
+  \node[box=vert, text width=4.3cm] (b) at (6.2,0)
+    {\textbf{2. Investissement}\\ Local, four, salaires : la monnaie circule};
+  \node[box=orange, text width=4.3cm] (c) at (6.2,-2.9)
+    {\textbf{3. Production}\\ La boulangerie vend du pain et génère des revenus};
+  \node[box=rouge, text width=4.3cm] (d) at (0,-2.9)
+    {\textbf{4. Destruction}\\ Le crédit est remboursé : la monnaie disparaît};
+  \node[box=vert, text width=6cm] (e) at (3.1,-5.6)
+    {\textbf{Ce qui reste : la boulangerie}\\ (richesse réelle)};
+  \draw[fleche] (a) -- (b);
+  \draw[fleche] (b) -- (c);
+  \draw[fleche] (c) -- (d);
+  \draw[fleche] (d) -- (e);
+\end{tikzpicture}
+\caption{Un crédit productif : la monnaie disparaît, la richesse créée reste.}
+\label{fig:boulangerie}
+\end{figure}
+
+
+
+% =====================================================================
+\section{La monnaie crée-t-elle de la richesse ?}
+
+D'après le Larousse, "La richesse désigne généralement l'abondance de biens matériels, d'argent, de ressources ou de valeurs (morales, intellectuelles ou culturelles) détenues par un individu, un groupe ou une nation."
+Cela est différent de la monnaie par définition qui est l'ensemble des moyens de paiement par les membres d'une collectivité pour régler leurs transactions et éteindre leurs dettes.
+
+$\text{La richesse} \neq \text{la monnaie.}$
+
+La monnaie n'est pas de la richesse : on ne peut ni la manger ni produire avec. La richesse, sont les biens, les services, les logements, les machines et le savoir-faire. La monnaie permet d'être un outil pour échanger des biens et des services, qui sont la vraie richesse.
+
+
+$\text{Projet : ressources, capital...} \rightarrow \text{la richesse est créée et reste après la destruction de la monnaie.}$
+
+
+
+
+
+% =====================================================================
+\section*{Conclusion}
+
+La monnaie est créée surtout par les banques commerciales lorsqu'elles accordent des crédits et par la banque centrale pour la monnaie de base. Chaque crédit est détruit à son remboursement, la monnaie n'est pas la richesse : c'est un levier qui permet de la créer indirectement, à condition de financer des projets productifs.
+
+\section*{Sources}
+
+\begin{itemize}
+
+    \item Banque de France, \textit{Comment est créée la monnaie ?}, 2024.
+    \url{https://www.banque-france.fr/fr/publications-et-statistiques/publications/comment-est-creee-la-monnaie}
+
+    \item McLeay, M., Radia, A. et Thomas, R., \textit{Money Creation in the Modern Economy}, Bank of England Quarterly Bulletin, 2014.
+    \url{https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy}
+
+    \item Deutsche Bundesbank, \textit{The Role of Banks, Non-Banks and the Central Bank in the Money Creation Process}, Monthly Report, avril 2017.
+    \url{https://www.bundesbank.de/en/publications/reports/monthly-reports/monthly-report-april-2017-667334}
+
+    \item Banque centrale européenne (BCE), \textit{Monetary Aggregates}.
+    \url{https://www.ecb.europa.eu/stats/money_credit_banking/monetary_aggregates/html/index.en.html}
+
+    \item Banque centrale européenne (BCE), \textit{The Introduction of Euro Banknotes and Coins in 2002}.
+    \url{https://www.ecb.europa.eu/euro/changeover/2002/html/index.en.html}
+
+    \item Union européenne, \textit{Traité sur le fonctionnement de l'Union européenne}, articles 123 et 128, financement monétaire et émission des billets et pièces en euros.
+    \url{https://eur-lex.europa.eu/eli/treaty/tfeu_2012/art_123/oj/fra}
+    \url{https://eur-lex.europa.eu/eli/treaty/tfeu_2012/art_128/oj/fra}
+
+\end{itemize}
+
+
+\end{document}

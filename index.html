@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="coin">
+    <span class="langue est-active" lang="fr">fr</span>
+    <a class="langue" href="en/index.html" hreflang="en" lang="en">en</a>
+    <button type="button" class="menu-bouton" aria-expanded="false" aria-controls="menu">
+      <span class="sr">Menu</span>
+      <span class="traits" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <nav id="menu" class="menu" hidden aria-label="Sections">
+    <div class="menu-vue" data-vue="choix">
+      <a href="#liens">Liens</a>
+      <a href="#papiers">Papiers</a>
+      <button type="button" class="menu-entree" data-ouvre="galerie">Galerie d'images</button>
+      <button type="button" class="menu-entree" data-ouvre="ressources">Ressources</button>
+    </div>
+    <div class="menu-vue" data-vue="galerie" hidden>
+      <button type="button" class="retour" data-ouvre="choix">Retour</button>
+      <p class="menu-titre">Galerie d'images</p>
+      <div class="galerie">
+        <p class="vide">Les images que je trouve belles seront ici.</p>
+      </div>
+    </div>
+    <div class="menu-vue" data-vue="ressources" hidden>
+      <button type="button" class="retour" data-ouvre="choix">Retour</button>
+      <p class="menu-titre">Ressources</p>
+      <ul class="ressources">
+        <li class="vide">Les ressources seront ici.</li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Joko</h1>
+    <span class="filet-titre" aria-hidden="true"></span>
+    <p class="chantier">Site en construction</p>
+
+    <div class="intro">
+      <p class="accroche">Je mets ici mes liens, et les papiers que j’écris&nbsp;: des questions que je me pose, et des travaux rendus.</p>
+      <p class="reserve">Je ne suis pas expert dans les domaines traités, et je ne suis pas légitime à les publier. Ces textes peuvent contenir beaucoup d’erreurs. Il s’agit de tentatives personnelles.</p>
+      <p class="phrase-correction">Si vous avez une <button type="button" class="correction-lien" aria-expanded="false" aria-controls="panneau-mail">correction à apporter</button>.</p>
+      <div id="panneau-mail" class="panneau-mail" hidden>
+        <p>Envoyez-moi un mail à <a href="mailto:folivum.support@gmail.com">folivum.support@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="rangees">
+    <section id="liens" class="bloc">
+      <button type="button" class="tiroir-titre" aria-expanded="false" aria-controls="tiroir-liens"><span>Liens</span></button>
+      <div id="tiroir-liens" class="tiroir" hidden>
+        <a class="carte" href="https://github.com/Joko-afk2">
+          <span class="nom">GitHub</span>
+          <span class="detail">github.com/Joko-afk2</span>
+        </a>
+        <a class="carte" href="https://folivum.com">
+          <span class="nom">Folivum</span>
+          <span class="detail">folivum.com — hébergeur de papers pour mobile</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="papiers" class="bloc">
+      <button type="button" class="tiroir-titre" aria-expanded="false" aria-controls="tiroir-papiers"><span>Papiers</span></button>
+      <div id="tiroir-papiers" class="tiroir" hidden>
+        <div class="carte carte-papier">
+          <div class="papier-ligne">
+            <span class="nom nom-papier">"Comment la monnaie est-elle créée ?"</span>
+            <button type="button" class="points" aria-expanded="false" aria-controls="formats-monnaie">
+              <span class="sr">Formats</span>
+              <span aria-hidden="true">···</span>
+            </button>
+          </div>
+          <div id="formats-monnaie" class="formats" hidden>
+            <div class="format">
+              <a href="papiers/dou-vient-la-monnaie.pdf">Ouvrir en PDF</a>
+              <a class="telecharger" href="papiers/dou-vient-la-monnaie.pdf" download>Télécharger</a>
+            </div>
+            <div class="format">
+              <a href="papiers/dou-vient-la-monnaie.tex">Ouvrir en TeX</a>
+              <a class="telecharger" href="papiers/dou-vient-la-monnaie.tex" download>Télécharger</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <script src="js/site.js"></script>
+</body>
+</html>
