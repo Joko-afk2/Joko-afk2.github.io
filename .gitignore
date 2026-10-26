@@ -1,0 +1,15 @@
+# Système
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+
+# Journaux et brouillons
+*.log
+_check.mjs
+shots-*.png
