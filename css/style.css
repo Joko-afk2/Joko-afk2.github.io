@@ -381,7 +381,7 @@ a.carte:hover .nom,
 
 .papier-ligne {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
@@ -396,6 +396,8 @@ a.carte .nom {
 }
 
 .nom-papier {
+  flex: 1;
+  min-width: 0;
   font-family: Fraunces, Georgia, "Palatino Linotype", Palatino, serif;
   font-size: 1.05rem;
   font-weight: 500;

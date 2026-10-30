@@ -9,8 +9,10 @@ Site personnel statique. La page française est à la racine, la page anglaise d
 - `css/style.css` — mise en page
 - `js/site.js` — menu, tiroirs, formats du papier
 - `favicon.svg` — icône
-- `papiers/dou-vient-la-monnaie.pdf` — papier
-- `papiers/dou-vient-la-monnaie.tex` — source du papier
+- `papiers/dou-vient-la-monnaie.pdf` — papier sur la monnaie
+- `papiers/dou-vient-la-monnaie.tex` — source de ce papier
+- `papiers/un-seul-neurone.pdf` — papier sur un neurone et un modèle de langage
+- `papiers/un-seul-neurone.tex` — source de ce papier
 - `images/` — images de la galerie
 
 ## Galerie
